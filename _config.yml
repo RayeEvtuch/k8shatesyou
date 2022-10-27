@@ -42,3 +42,5 @@ plugins: []
 #
 exclude:
   - README.md
+  - app.yaml
+  - cloudbuild.yaml
