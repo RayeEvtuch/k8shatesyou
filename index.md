@@ -31,6 +31,11 @@ kubectl patch deployment/backend -p='{"spec":{"template":{"spec":{"containers":[
 kubectl exec -it deployment/backend -c tmp-container -- /bin/sh
 ```
 
+```sh
+kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/alpine)"
+kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/busybox)"
+```
+
 # Blunt Force
 
 ## Remove resource limitations from a deployment
@@ -79,6 +84,10 @@ kubectl get $(kubectl api-resources --namespaced=false --verbs=get -o name | tr 
 kubectl get secret/database -o go-template='{{ range $k,$v := .data }}{{ $k }}: {{ $v | base64decode }}{{ "\n" }}{{ end }}'
 ```
 
+```sh
+kubectl get secret/database -o go-template="$(curl https://k8sh8.com/template/secret)"
+```
+
 # Certificates
 
 ## Get certificate information
@@ -87,10 +96,18 @@ kubectl get secret/database -o go-template='{{ range $k,$v := .data }}{{ $k }}: 
 kubectl get secret/frontend-certificate -o go-template='{{ index .data "tls.crt" | base64decode }}' | openssl x509 -text
 ```
 
+```sh
+kubectl get secret/frontend-certificate -o go-template="$(curl https://k8sh8.com/template/cert)" | openssl x509 -text
+```
+
 ## Get private key information
 
 ```sh
 kubectl get secret/frontend-certificate -o go-template='{{ index .data "tls.key" | base64decode }}' | openssl rsa -text
+```
+
+```sh
+kubectl get secret/frontend-certificate -o go-template="$(curl https://k8sh8.com/template/key)" | openssl rsa -text
 ```
 
 # Helm
