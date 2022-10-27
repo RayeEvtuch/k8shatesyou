@@ -1,0 +1,16 @@
+{
+    "spec": {
+        "template": {
+            "spec": {
+                "containers": [
+                    {
+                        "name": "tmp-container",
+                        "image": "alpine",
+                        "std-in": true,
+                        "tty": true
+                    }
+                ]
+            }
+        }
+    }
+}
