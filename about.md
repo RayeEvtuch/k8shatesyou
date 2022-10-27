@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: /about
 ---
 
 I made this site mostly to house quick kubectl snippets that I find myself using a lot but can never remember. I hope you enjoy!
