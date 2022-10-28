@@ -1,0 +1,10 @@
+{
+    "status": {
+        "conditions": [
+            {
+                "type": "Issuing",
+                "status": "True"
+            }
+        ]
+    }
+}

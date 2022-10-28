@@ -90,6 +90,16 @@ kubectl get secret/database -o go-template="$(curl https://k8sh8.com/template/se
 
 # Certificates
 
+## Force cert-manager certificate renewal
+
+```sh
+kubectl patch certificate/frontend-certificate --subresource status --type=merge -p='{"status":{"conditions":[{"type":"Issuing","status":"True"}]}}'
+```
+
+```sh
+kubectl patch certificate/frontend-certificate --subresource status --type=merge -p="$(curl https://k8sh8.com/patch/renew)"
+```
+
 ## Get certificate information
 
 ```sh
