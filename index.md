@@ -59,7 +59,7 @@ kubectl exec backend -c database -- /bin/sh -c "kill 1"
 ## Skip finalizers for a namespace stuck in Terminating
 
 ```sh
-kubectl patch ns/blog -p '{"spec":{"finalizers":[]}}' --dry-run=client -o json | kubectl replace --raw "/api/v1/namespaces/blog/finalize" -f -
+kubectl patch ns/blog -p='{"spec":{"finalizers":[]}}' --dry-run=client -o json | kubectl replace --raw "/api/v1/namespaces/blog/finalize" -f -
 ```
 
 # Information
