@@ -21,7 +21,7 @@ kubectl port-forward service/blog 12345:http
 ## Get a shell on a temporary pod
 
 ```sh
-kubectl run -it --rm alpine tmp-pod -- /bin/sh
+kubectl run -it --rm --image=alpine tmp-pod -- /bin/sh
 ```
 
 ## Add a temporary container to a deployment and get a shell
