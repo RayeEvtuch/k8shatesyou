@@ -36,6 +36,12 @@ kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/alpine)"
 kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/busybox)"
 ```
 
+## Add a temporary pod that mounts a PersistentVolumeClaim
+
+```sh
+kubectl run -it --rm --image=alpine tmp --override-type 'strategic' --overrides '{"spec":{"containers":[{"name":"tmp","volumeMounts":[{"name":"v","mountPath":"/mnt"}]}],"volumes":[{"name":"v","persistentVolumeClaim":{"claimName":"database"}}]}}' -- /bin/sh
+```
+
 # Blunt Force
 
 ## Remove resource limitations from a deployment
