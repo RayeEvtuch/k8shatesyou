@@ -20,7 +20,7 @@
 
 title: k8s Hates You
 author: Scott Evtuch
-email: k8sh8@queensidecastle.com
+email: k&#56;sh8@queensidecas&#116;le.com
 description: >- # this means to ignore newlines until "baseurl:"
   A collection of helpful resources because Kubernetes hates you.
 baseurl: "/" # the subpath of your site, e.g. /blog
