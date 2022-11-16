@@ -9,7 +9,7 @@ layout: default
 ## Get all abnormal pods
 
 ```sh
-kubectl get pods --field-selector="status.phase!=Running,status.phase!=Succeeded"
+kubectl get pods --field-selector "status.phase!=Running,status.phase!=Succeeded"
 ```
 
 ## Connect to a service on a local port
@@ -21,13 +21,13 @@ kubectl port-forward service/blog 12345:http
 ## Get a shell on a temporary pod
 
 ```sh
-kubectl run -it --rm --image=alpine tmp -- /bin/sh
+kubectl run -it --rm --image alpine tmp -- /bin/sh
 ```
 
 ## Add a temporary container to a deployment and get a shell
 
 ```sh
-kubectl patch deployment/backend -p='{"spec":{"template":{"spec":{"containers":[{"name":"tmp-container","image":"alpine","std-in":true,"tty":true}]}}}}'
+kubectl patch deployment/backend -p '{"spec":{"template":{"spec":{"containers":[{"name":"tmp-container","image":"alpine","std-in":true,"tty":true}]}}}}'
 kubectl exec -it deployment/backend -c tmp-container -- /bin/sh
 ```
 
@@ -47,7 +47,7 @@ kubectl run -it --rm --image=alpine tmp --override-type 'strategic' --overrides 
 ## Remove resource limitations from a deployment
 
 ```sh
-kubectl set resources deployment/backend --limits="memory=0" --requests="memory=0"
+kubectl set resources deployment/backend --limits 'memory=0' --requests 'memory=0'
 ```
 
 ## Restart all pods for a deployment
@@ -65,7 +65,7 @@ kubectl exec backend -c database -- /bin/sh -c "kill 1"
 ## Skip finalizers for a namespace stuck in Terminating
 
 ```sh
-kubectl patch ns/blog -p='{"spec":{"finalizers":[]}}' --dry-run=client -o json | kubectl replace --raw "/api/v1/namespaces/blog/finalize" -f -
+kubectl patch ns/blog -p '{"spec":{"finalizers":[]}}' --dry-run client -o json | kubectl replace --raw "/api/v1/namespaces/blog/finalize" -f -
 ```
 
 # Labels & Annotations
@@ -81,13 +81,13 @@ kubectl annotate deployment/backend meta.helm.sh/release-name-
 ## Get all objects of all types in a namespace
 
 ```sh
-kubectl -n blog get $(kubectl api-resources --namespaced=true --verbs=get -o name | tr '\n' ',')pods
+kubectl -n blog get $(kubectl api-resources --namespaced true --verbs get -o name | tr '\n' ',')pods
 ```
 
 ## Get all non-namespaced objects in the cluster
 
 ```sh
-kubectl get $(kubectl api-resources --namespaced=false --verbs=get -o name | tr '\n' ',')nodes
+kubectl get $(kubectl api-resources --namespaced false --verbs get -o name | tr '\n' ',')nodes
 ```
 
 # Secrets
@@ -107,11 +107,11 @@ kubectl get secret/database -o go-template="$(curl https://k8sh8.com/template/se
 ## Force cert-manager certificate renewal
 
 ```sh
-kubectl patch certificate/frontend-certificate --subresource status --type=merge -p='{"status":{"conditions":[{"type":"Issuing","status":"True"}]}}'
+kubectl patch certificate/frontend-certificate --subresource status --type merge -p '{"status":{"conditions":[{"type":"Issuing","status":"True"}]}}'
 ```
 
 ```sh
-kubectl patch certificate/frontend-certificate --subresource status --type=merge -p="$(curl https://k8sh8.com/patch/renew)"
+kubectl patch certificate/frontend-certificate --subresource status --type merge -p "$(curl https://k8sh8.com/patch/renew)"
 ```
 
 ## Get certificate information
@@ -139,7 +139,7 @@ kubectl get secret/frontend-certificate -o go-template="$(curl https://k8sh8.com
 ## Force Helm ownership of an object
 
 ```sh
-kubectl annotate deployment/frontend --overwrite=true app.kubernetes.io/managed-by=Helm meta.helm.sh/release-name=blog meta.helm.sh/release-namespace=blog
+kubectl annotate deployment/frontend --overwrite app.kubernetes.io/managed-by=Helm meta.helm.sh/release-name=blog meta.helm.sh/release-namespace=blog
 ```
 
 {% endraw  %}
