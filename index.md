@@ -68,6 +68,14 @@ kubectl exec backend -c database -- /bin/sh -c "kill 1"
 kubectl patch ns/blog -p='{"spec":{"finalizers":[]}}' --dry-run=client -o json | kubectl replace --raw "/api/v1/namespaces/blog/finalize" -f -
 ```
 
+# Labels & Annotations
+
+## Remove an annotation
+
+```sh
+kubectl annotate deployment/backend meta.helm.sh/release-name-
+```
+
 # Information
 
 ## Get all objects of all types in a namespace
