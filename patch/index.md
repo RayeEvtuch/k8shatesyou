@@ -10,7 +10,7 @@ Use these files to quickly patch resources
 Add a temporary container to a deployment
 
 ```sh
-kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/alpine)"
+kubectl patch deployment/backend -p "$(curl https://k8sh8.com/patch/alpine)"
 ```
 
 # [busybox](/patch/busybox)
@@ -18,7 +18,7 @@ kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/alpine)"
 Add a temporary container to a deployment
 
 ```sh
-kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/busybox)"
+kubectl patch deployment/backend -p "$(curl https://k8sh8.com/patch/busybox)"
 ```
 
 # [renew](/patch/renew)
@@ -26,5 +26,5 @@ kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/busybox)"
 Force cert-manager certificate renewal
 
 ```sh
-kubectl patch certificate/frontend-certificate --subresource status --type=merge -p="$(curl https://k8sh8.com/patch/renew)"
+kubectl patch certificate/frontend-certificate --subresource status --type=merge -p "$(curl https://k8sh8.com/patch/renew)"
 ```

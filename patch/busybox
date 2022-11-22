@@ -4,7 +4,7 @@
             "spec": {
                 "containers": [
                     {
-                        "name": "tmp-container",
+                        "name": "tmp",
                         "image": "busybox",
                         "std-in": true,
                         "tty": true

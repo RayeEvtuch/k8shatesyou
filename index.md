@@ -27,19 +27,19 @@ kubectl run -it --rm --image alpine tmp -- /bin/sh
 ## Add a temporary container to a deployment and get a shell
 
 ```sh
-kubectl patch deployment/backend -p '{"spec":{"template":{"spec":{"containers":[{"name":"tmp-container","image":"alpine","std-in":true,"tty":true}]}}}}'
-kubectl exec -it deployment/backend -c tmp-container -- /bin/sh
+kubectl patch deployment/backend -p '{"spec":{"template":{"spec":{"containers":[{"name":"tmp","image":"alpine","std-in":true,"tty":true}]}}}}'
+kubectl exec -it deployment/backend -c tmp -- /bin/sh
 ```
 
 ```sh
-kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/alpine)"
-kubectl patch deployment/backend -p="$(curl https://k8sh8.com/patch/busybox)"
+kubectl patch deployment/backend -p "$(curl https://k8sh8.com/patch/alpine)"
+kubectl patch deployment/backend -p "$(curl https://k8sh8.com/patch/busybox)"
 ```
 
 ## Add a temporary pod that mounts a PersistentVolumeClaim
 
 ```sh
-kubectl run -it --rm --image=alpine tmp --override-type 'strategic' --overrides '{"spec":{"containers":[{"name":"tmp","volumeMounts":[{"name":"v","mountPath":"/mnt"}]}],"volumes":[{"name":"v","persistentVolumeClaim":{"claimName":"database"}}]}}' -- /bin/sh
+kubectl run -it --rm --image alpine tmp --override-type 'strategic' --overrides '{"spec":{"containers":[{"name":"tmp","volumeMounts":[{"name":"v","mountPath":"/mnt"}]}],"volumes":[{"name":"v","persistentVolumeClaim":{"claimName":"database"}}]}}' -- /bin/sh
 ```
 
 # Blunt Force
@@ -81,13 +81,13 @@ kubectl annotate deployment/backend meta.helm.sh/release-name-
 ## Get all objects of all types in a namespace
 
 ```sh
-kubectl -n blog get $(kubectl api-resources --namespaced true --verbs get -o name | tr '\n' ',')pods
+kubectl -n blog get $(kubectl api-resources --namespaced=true --verbs get -o name | tr '\n' ',')pods
 ```
 
 ## Get all non-namespaced objects in the cluster
 
 ```sh
-kubectl get $(kubectl api-resources --namespaced false --verbs get -o name | tr '\n' ',')nodes
+kubectl get $(kubectl api-resources --namespaced=false --verbs get -o name | tr '\n' ',')nodes
 ```
 
 # Secrets
