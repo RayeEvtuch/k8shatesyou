@@ -1,0 +1,10 @@
+#! /bin/sh
+
+KEY="$(kubectl get $@ -o go-template='{{ index .data "tls.key" | base64decode }}')"
+if expr "$KEY" : "-----BEGIN RSA PRIVATE KEY-----$" > /dev/null; then
+    echo "$KEY" | openssl rsa -text
+elif expr "$KEY" : "-----BEGIN EC PRIVATE KEY-----$" > /dev/null; then
+    echo "$KEY" | openssl ec -text
+else
+    echo "$KEY"
+fi
