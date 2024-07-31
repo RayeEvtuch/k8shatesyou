@@ -19,14 +19,13 @@
 # in the templates via {{ site.myvariable }}.
 
 title: k8s Hates You
-author: Scott Evtuch
+author: Raye Evtuch
 email: k&#56;sh8@queensidecas&#116;le.com
 description: >- # this means to ignore newlines until "baseurl:"
   A collection of helpful resources because Kubernetes hates you.
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://k8shatesyou.com" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: k8shatesyou
-github_username:  scottevtuch
+github_username: RayeEvtuch
 google_analytics: true
 
 # Build settings
