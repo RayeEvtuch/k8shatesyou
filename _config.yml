@@ -42,3 +42,4 @@ plugins: []
 #
 exclude:
   - README.md
+  - vendor

@@ -6,7 +6,7 @@ permalink: /about
 
 I made this site mostly to house quick kubectl snippets that I find myself using a lot but can never remember. I hope you enjoy!
 
-Git Repo: [k8s Hates You](https://github.com/RayeEvtuch/k8shatesyou)
+Git Repo: [k8s Hates You](https://gitlab.com/RayeEvtuch/k8shatesyou)
 
 # My other stuff
 
